@@ -20,18 +20,22 @@
       <th>Edit</th>
       <th>Impersonate</th>
     </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
+    <tr *ngFor="let company of companies">
+      <td>{{company.name}}</td>
+      <td>{{company.email}}</td>
+      <td>{{company.address}}</td>
+      <td>{{company.phoneNum}}</td>
+      <td>{{company.dotNum}}</td>
+      <td>{{company.mcNum}}</td>
+      <td>{{company.name}}</td>
+      <td>{{company.name}}</td>
+      <td>{{company.name}}</td>
+      <td>
+        <span *ngIf="company.active">
+          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        </span>
+      </td>
+      <td>{{company.name}}</td>
       <td>
         <button>Edit</button>
       </td>

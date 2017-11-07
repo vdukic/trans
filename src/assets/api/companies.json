@@ -1,0 +1,30 @@
+{
+  "companies": [
+    {
+      "email": "someMail",
+      "name": "severina3",
+      "active": true,
+      "address": "someAddress",
+      "phoneNum": "someNum",
+      "dotNum": "someDotNum",
+      "mcNum": "somemcNum",
+      "accountsNum": 25,
+      "creationTime": 1508593820863,
+      "driversNumber": "5 (15)",
+      "usersNumber": "3 (5)"
+    },
+    {
+      "email": "someMail",
+      "name": "severina3",
+      "active": false,
+      "address": "someAddress",
+      "phoneNum": "someNum",
+      "dotNum": "someDotNum",
+      "mcNum": "somemcNum",
+      "accountsNum": 25,
+      "creationTime": 1508593820863,
+      "driversNumber": "5 (15)",
+      "usersNumber": "3 (5)"
+    }
+  ]
+}
