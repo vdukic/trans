@@ -1,15 +1,25 @@
 import {Injectable} from '@angular/core';
-import {Response, RequestOptions, Headers} from "@angular/http";
-import 'rxjs/add/operator/map'
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Response, RequestOptions, Headers, Http} from '@angular/http';
+import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CompanyService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: Http) {
+  }
+
+  getHeaders() {
+    const headers = new Headers({
+      'Access-Control-Allow-Origin': '*'
+    });
+    const options = new RequestOptions({headers: headers});
+    return options;
   }
 
   getCompanies() {
-    return this.http.get('../../../assets/api/companies.json', {})
+    const options = this.getHeaders();
+    return this.http.get('http://104.131.60.250/seve/admin/company/getAll', options)
+      .map((response: Response) => response.json());
   }
 }
