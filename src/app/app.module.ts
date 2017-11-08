@@ -6,18 +6,25 @@ import {CompanyUsersComponent} from './company-users/company-users.component';
 import {SettingsComponent} from './settings/settings.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {HttpModule} from '@angular/http';
-import {CompanyService} from "./services/company.service";
+import {CompanyService} from './services/company.service';
+import {AddCompanyComponent} from './add-company/add-company.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BootstrapModalModule, DialogService} from 'ng2-bootstrap-modal';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyUsersComponent,
-    SettingsComponent
+    SettingsComponent,
+    AddCompanyComponent
   ],
   imports: [
     AngularFontAwesomeModule,
+    BootstrapModalModule,
     BrowserModule,
+    FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([{
       path: '',
       component: CompanyUsersComponent
@@ -30,7 +37,10 @@ import {CompanyService} from "./services/company.service";
         component: SettingsComponent
       }])
   ],
-  providers: [CompanyService],
+  entryComponents: [
+    AddCompanyComponent
+  ],
+  providers: [CompanyService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

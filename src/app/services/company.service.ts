@@ -21,4 +21,10 @@ export class CompanyService {
     return this.http.get('http://104.131.60.250/seve/admin/company/getAll', options)
       .map((response: Response) => response.json());
   }
+
+  saveCompany(data) {
+    const options = this.getHeaders();
+    return this.http.get('http://104.131.60.250/seve/admin/company/getAll', options)
+      .map((response: Response) => response.json());
+  }
 }
