@@ -11,7 +11,6 @@ export class CompanyService {
 
   getHeaders() {
     const headers = new Headers({
-      'Access-Control-Allow-Origin': '*'
     });
     const options = new RequestOptions({headers: headers});
     return options;

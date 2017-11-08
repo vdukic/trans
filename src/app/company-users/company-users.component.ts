@@ -4,8 +4,7 @@ import {CompanyService} from "../services/company.service";
 @Component({
   selector: 'app-company-users',
   templateUrl: './company-users.component.html',
-  styleUrls: ['./company-users.component.scss'],
-  providers: [CompanyService]
+  styleUrls: ['./company-users.component.scss']
 })
 export class CompanyUsersComponent implements OnInit {
   companies: any;

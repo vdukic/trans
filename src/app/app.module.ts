@@ -4,8 +4,9 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {CompanyUsersComponent} from './company-users/company-users.component';
 import {SettingsComponent} from './settings/settings.component';
-import {HttpClientModule} from "@angular/common/http";
-import {AngularFontAwesomeModule} from "angular-font-awesome";
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {HttpModule} from '@angular/http';
+import {CompanyService} from "./services/company.service";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
   imports: [
     AngularFontAwesomeModule,
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot([{
       path: '',
       component: CompanyUsersComponent
@@ -26,10 +28,9 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
       {
         path: 'settings',
         component: SettingsComponent
-      }]),
-    HttpClientModule
+      }])
   ],
-  providers: [],
+  providers: [CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
