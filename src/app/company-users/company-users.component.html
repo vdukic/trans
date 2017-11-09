@@ -27,17 +27,17 @@
       <td>{{company.phoneNum}}</td>
       <td>{{company.dotNum}}</td>
       <td>{{company.mcNum}}</td>
-      <td>{{company.name}}</td>
-      <td>{{company.name}}</td>
-      <td>{{company.name}}</td>
+      <td>{{company.accountsNum}}</td>
+      <td>{{company.driversNumber}}</td>
+      <td>{{company.usersNumber}}</td>
       <td>
         <span *ngIf="company.active">
           <i class="fa fa-check-square-o" aria-hidden="true"></i>
         </span>
       </td>
-      <td>{{company.name}}</td>
+      <td>{{company.creationTime | date:'d MMM, y'}}</td>
       <td>
-        <button>Edit</button>
+        <button (click)="editCompany(company)">Edit</button>
       </td>
       <td>
         <button>Impersonate</button>

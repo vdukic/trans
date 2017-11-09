@@ -21,7 +21,8 @@ export class CompanyService {
       .map((response: Response) => response.json());
   }
 
-  saveCompany(data) {
+  saveCompany(data, oldEmail) {
+    let url = 'http://104.131.60.250/seve/admin/company/create';
     const options = this.getHeaders();
     const params = {
       name: data.companyName,
@@ -31,9 +32,12 @@ export class CompanyService {
       phoneNum: data.phoneNumber,
       dotNum: data.dotNumber,
       mcNum: data.mcNumber,
-      accountNum: 9
+      accountNum: data.packageName
     };
-    return this.http.post('http://104.131.60.250/seve/admin/company/create', params, options)
+    if (oldEmail) {
+      url = 'http://104.131.60.250/seve/admin/company/create';
+    }
+    return this.http.post(url, params, options)
       .map((response: Response) => response.json());
   }
 }

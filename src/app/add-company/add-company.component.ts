@@ -22,9 +22,10 @@ export interface FormModel {
 
 export class AddCompanyComponent extends DialogComponent<FormModel, boolean> implements FormModel, OnInit {
   rForm: FormGroup;
-  companyName: '';
-  email: '';
-  address: '';
+  oldEmail: string;
+  companyName: string;
+  email: string;
+  address: string;
   phoneNumber: number;
   dotNumber: number;
   mcNumber: number;
@@ -33,24 +34,26 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
 
   constructor(dialogService: DialogService, private fb: FormBuilder, private service: CompanyService) {
     super(dialogService);
-    this.rForm = fb.group({
-      'companyName': [null, Validators.required],
-      'email': [null, Validators.compose([Validators.required, Validators.email])],
-      'address': [null, Validators.required],
-      'phoneNumber': [null, Validators.required],
-      'dotNumber': [null, Validators.required],
-      'mcNumber': [null, Validators.required],
-      'packageName': [null, Validators.required],
-      'active': [false]
-    });
   }
 
   ngOnInit() {
-    this.rForm.controls['companyName'].setValue(this.companyName);
+    if (this.email) {
+      this.oldEmail = this.email;
+    }
+    this.rForm = this.fb.group({
+      'companyName': [this.companyName, Validators.required],
+      'email': [this.email, Validators.compose([Validators.required, Validators.email])],
+      'address': [this.address, Validators.required],
+      'phoneNumber': [this.phoneNumber, Validators.compose([Validators.required, Validators.minLength(6)])],
+      'dotNumber': [this.dotNumber, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'mcNumber': [this.mcNumber, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'packageName': [this.packageName, Validators.required],
+      'active': [this.active]
+    });
   }
 
   submit(data) {
-    this.service.saveCompany(data)
+    this.service.saveCompany(data, this.oldEmail)
       .subscribe((values) => {
       });
   }
