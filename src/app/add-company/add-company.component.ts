@@ -49,14 +49,13 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
     this.rForm.controls['companyName'].setValue(this.companyName);
   }
 
-  closeDialog(data) {
+  submit(data) {
     this.service.saveCompany(data)
       .subscribe((values) => {
-        debugger;
       });
   }
 
-  submit() {
+  closeDialog() {
     this.result = null;
     this.close();
   }

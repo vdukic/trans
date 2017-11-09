@@ -24,14 +24,14 @@ export class CompanyService {
   saveCompany(data) {
     const options = this.getHeaders();
     const params = {
-      name: 'gaerg',
-      email: 'gaer@ymail.com',
-      active: true,
-      address: '27 f',
-      phoneNum: '231321231',
-      dotNum: '4234',
-      mcNum: 'dwdw',
-      accountNum: 222
+      name: data.companyName,
+      email: data.email,
+      active: data.active,
+      address: data.address,
+      phoneNum: data.phoneNumber,
+      dotNum: data.dotNumber,
+      mcNum: data.mcNumber,
+      accountNum: 9
     };
     return this.http.post('http://104.131.60.250/seve/admin/company/create', params, options)
       .map((response: Response) => response.json());
