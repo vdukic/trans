@@ -22,6 +22,7 @@ export interface FormModel {
 
 export class AddCompanyComponent extends DialogComponent<FormModel, boolean> implements FormModel, OnInit {
   rForm: FormGroup;
+  saveBtnTxt = 'Create User';
   oldEmail: string;
   companyName: string;
   email: string;
@@ -39,6 +40,7 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
   ngOnInit() {
     if (this.email) {
       this.oldEmail = this.email;
+      this.saveBtnTxt = 'Save'
     }
     this.rForm = this.fb.group({
       'companyName': [this.companyName, Validators.required],

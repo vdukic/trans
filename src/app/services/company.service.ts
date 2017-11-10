@@ -32,10 +32,11 @@ export class CompanyService {
       phoneNum: data.phoneNumber,
       dotNum: data.dotNumber,
       mcNum: data.mcNumber,
-      accountNum: data.packageName
+      accountNum: data.packageName,
+      currentEmail: oldEmail
     };
     if (oldEmail) {
-      url = 'http://104.131.60.250/seve/admin/company/create';
+      url = 'http://104.131.60.250/seve/admin/company/edit';
     }
     return this.http.post(url, params, options)
       .map((response: Response) => response.json());

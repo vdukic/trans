@@ -54,7 +54,7 @@
               <input type="checkbox" class="cl-checkbox" formControlName="active">
             </div>
             <div class="cl-btn-container">
-              <input type="submit" class="btn-primary" value="Create User" [disabled]="!rForm.valid">
+              <input type="submit" class="btn-primary" value="{{saveBtnTxt}}" [disabled]="!rForm.valid">
               <input type="button" class="btn-primary cl-close-dialog" value="Cancel" (click)="closeDialog()">
             </div>
           </div>
