@@ -10,13 +10,16 @@
               </label>
               <input type="text" formControlName="companyName" [ngClass]="{'cl-mandatory-field': !rForm.controls['companyName'].valid && rForm.controls['companyName'].touched}">
               <div>
-                <span class="cl-alert" *ngIf=""></span>
+                <span class="cl-alert" *ngIf="nameError">{{nameError}}</span>
               </div>
             </div>
             <div>
               <label class="cl-mandatory-label">Email
               </label>
               <input type="text" formControlName="email">
+              <div>
+                <span class="cl-alert" *ngIf="emailError">{{emailError}}</span>
+              </div>
             </div>
             <div>
               <label class="cl-mandatory-label">Address

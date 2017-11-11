@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Response, RequestOptions, Headers, Http} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
@@ -6,23 +6,27 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CompanyService {
 
+  realodCompanies = new EventEmitter();
+
   constructor(private http: Http) {
   }
 
   getHeaders() {
-    const headers = new Headers({});
+    const headers = new Headers({
+      'content-type': 'application/json'
+    });
     const options = new RequestOptions({headers: headers});
     return options;
   }
 
   getCompanies() {
     const options = this.getHeaders();
-    return this.http.get('http://104.131.60.250/seve/admin/company/getAll', options)
+    return this.http.get('http://seve.sytes.net/admin/company/getAll', options)
       .map((response: Response) => response.json());
   }
 
   saveCompany(data, oldEmail) {
-    let url = 'http://104.131.60.250/seve/admin/company/create';
+    let url = 'http://seve.sytes.net/admin/company/create';
     const options = this.getHeaders();
     const params = {
       name: data.companyName,
@@ -32,13 +36,13 @@ export class CompanyService {
       phoneNum: data.phoneNumber,
       dotNum: data.dotNumber,
       mcNum: data.mcNumber,
-      accountNum: data.packageName,
+      accountsNum: data.packageName,
       currentEmail: oldEmail
     };
     if (oldEmail) {
-      url = 'http://104.131.60.250/seve/admin/company/edit';
+      url = 'http://seve.sytes.net/admin/company/edit';
     }
-    return this.http.post(url, params, options)
+    return this.http.post(url, JSON.stringify(params), options)
       .map((response: Response) => response.json());
   }
 }

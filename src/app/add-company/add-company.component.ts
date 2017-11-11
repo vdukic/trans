@@ -25,7 +25,9 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
   saveBtnTxt = 'Create User';
   oldEmail: string;
   companyName: string;
+  nameError: string;
   email: string;
+  emailError: string;
   address: string;
   phoneNumber: number;
   dotNumber: number;
@@ -40,15 +42,15 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
   ngOnInit() {
     if (this.email) {
       this.oldEmail = this.email;
-      this.saveBtnTxt = 'Save'
+      this.saveBtnTxt = 'Save';
     }
     this.rForm = this.fb.group({
       'companyName': [this.companyName, Validators.required],
       'email': [this.email, Validators.compose([Validators.required, Validators.email])],
       'address': [this.address, Validators.required],
-      'phoneNumber': [this.phoneNumber, Validators.compose([Validators.required, Validators.minLength(6)])],
-      'dotNumber': [this.dotNumber, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'mcNumber': [this.mcNumber, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'phoneNumber': [this.phoneNumber, Validators.required],
+      'dotNumber': [this.dotNumber, Validators.required],
+      'mcNumber': [this.mcNumber, Validators.required],
       'packageName': [this.packageName, Validators.required],
       'active': [this.active]
     });
@@ -57,6 +59,12 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
   submit(data) {
     this.service.saveCompany(data, this.oldEmail)
       .subscribe((values) => {
+        if (values.errors) {
+          this.handleErrors(values.errors);
+        } else if (values.finished) {
+          this.service.realodCompanies.emit();
+          this.closeDialog();
+        }
       });
   }
 
@@ -65,4 +73,13 @@ export class AddCompanyComponent extends DialogComponent<FormModel, boolean> imp
     this.close();
   }
 
+  private handleErrors(errors) {
+    const errorArray = ['email', 'name'];
+    const me = this;
+    for (const error in errors) {
+      if (errorArray.includes(error)) {
+        me[error + 'Error'] = errors[error];
+      }
+    }
+  }
 }

@@ -17,10 +17,12 @@ export class CompanyUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getCompanies()
-      .subscribe((data: any) => {
-        this.companies = data.companies;
-      });
+    this.getCompanies();
+    this.service.realodCompanies.subscribe(
+      (data) => {
+        this.getCompanies();
+      }
+    );
   }
 
   addNewCompanyUser() {
@@ -37,8 +39,6 @@ export class CompanyUsersComponent implements OnInit {
       backdropColor: 'rgba(0, 0, 0, 0.5)'
     })
       .subscribe((isConfirmed) => {
-        if (isConfirmed) {
-        }
       });
   }
 
@@ -56,9 +56,13 @@ export class CompanyUsersComponent implements OnInit {
       backdropColor: 'rgba(0, 0, 0, 0.5)'
     })
       .subscribe((isConfirmed) => {
-        if (isConfirmed) {
-        }
       });
   }
 
+  private getCompanies() {
+    this.service.getCompanies()
+      .subscribe((data: any) => {
+        this.companies = data.companies;
+      });
+  }
 }
